@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/mvnatg/common/src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src/mvnatg/services/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="DYNAMO_ROOT/B2BCommerce/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/B2BCommerce/lib/resources.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Assembler/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Assembler/lib/endeca_assembler_core-11.1.0.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Assembler/lib/endeca_assembler_navigation-11.1.0.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Assembler/lib/endeca_navigation-6.5.1.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Base/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Endeca/Index/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAF/Search/Index/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAS/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAS/lib/jsp-api.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAS/lib/resources.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAS/lib/servlet.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DAS/lib/jxl-2.6.6.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DCS/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DCS/lib/resources.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DCS-UI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DPS/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DPS/lib/resources.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DSS/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/DSS/lib/resources.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/Publishing/base/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/BIZUI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/FlexUI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/AssetUI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/WebUI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/ContentMgmt/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/ContentMgmt-UI/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/BCC/lib/classes.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT/REST/lib/atg-rest-1.0.jar"/>
+	<classpathentry kind="var" path="DYNAMO_ROOT"/>
+	<classpathentry kind="lib" path="src/mvnatg/common/lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
