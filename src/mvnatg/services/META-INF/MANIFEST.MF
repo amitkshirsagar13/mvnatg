@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+ATG-J2EE: j2ee-apps/helloworld
+ATG-EAR-Module: j2ee-apps/helloworld
+ATG-Config-Path: config/
+ATG-Required: DAS
+ATG-Class-Path: lib/classes.jar lib/slf4j-api-1.7.25.jar

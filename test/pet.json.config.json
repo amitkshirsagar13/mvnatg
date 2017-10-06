@@ -1,0 +1,9 @@
+{
+  "groupId":"io.services.rest",
+  "artifactId":"mvnatg",
+  "artifactVersion":"1.0.0",
+  "modelPackage":"io.services.rest.pet.v4.model",
+  "apiPackage":"io.services.rest.pet.v4.api",
+  "sourceFolder":"gen-src",
+  "library":"jersey2"
+}

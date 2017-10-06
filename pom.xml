@@ -1,0 +1,306 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mvnatg</groupId>
+	<artifactId>mvnatg</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>ATG</groupId>
+			<artifactId>DAS-classes</artifactId>
+			<version>10.0.3</version>
+			<type>jar</type>
+			<scope>system</scope>
+			<systemPath>${env.DYNAMO_ROOT}/DAS/lib/classes.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-codegen-cli</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+	</dependencies>
+	<modules>
+		<module>src/mvnatg/common</module>
+		<module>src/mvnatg/services</module>
+	</modules>
+	<profiles>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<hostname>${env.COMPUTERNAME}</hostname>
+			</properties>
+		</profile>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<hostname>${env.HOSTNAME}</hostname>
+			</properties>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.oracle.atg.ateam</groupId>
+				<artifactId>atg-runAssembler-plugin</artifactId>
+				<version>1.0</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>buildProdEar</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>runAssembler</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<dynamoHome>${dynamo.home}</dynamoHome>
+					<moduleNames>${assembler.app.modules}</moduleNames>
+					<destinationEar>${jboss6.deploy.dir}/${ear.filename}</destinationEar>
+					<!-- <addEarFile>${ear.filename}</addEarFile> -->
+					<!-- <classesOnly>BOOLEAN</classesOnly> -->
+					<collapseClassPath>${assembler.collapse.classpath}</collapseClassPath>
+					<!-- <contextRootsFile>STRING</contextRootsFile> -->
+					<!-- <displayName>STRING</displayName> -->
+					<distributable>${assembler.distributable}</distributable>
+					<jarDirs>${assembler.pack.with.zip}</jarDirs>
+					<jboss>${assembler.jboss}</jboss>
+					<layer>${assembler.layers}</layer>
+					<liveconfig>${assembler.liveconfig}</liveconfig>
+					<!-- <noFix>BOOLEAN</noFix> -->
+					<overwriteEar>${assembler.overwrite}</overwriteEar>
+					<pack>${assembler.pack.ear}</pack>
+					<prependJars>${assembler.prepend.jars}</prependJars>
+					<!-- <runInPlace>BOOLEAN</runInPlace> -->
+					<!-- <serverName>STRING</serverName> -->
+					<standalone>${assembler.standalone}</standalone>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<outputDirectory>classes</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<classesDirectory>classes</classesDirectory>
+					<finalName>classes</finalName>
+					<outputDirectory>lib</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>mvn.properties</file>
+								<file>etc/${user.name}.properties</file>
+								<file>etc/host-${hostname}.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>copy-atg-modules</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>C:/ATG/ATG11.1</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>src</directory>
+									<includes>
+										<!-- Generic modules -->
+										<!-- <include>*/config/**</include> <include>*/data/**</include> 
+											<include>*/install/**</include> <include>*/j2ee-apps/**</include> <include>*/lib/**</include> 
+											<include>*/META-INF/**</include> <include>*/resources/**</include> <include>*/src/**</include> 
+											<include>*/Versioned/src/**</include> <include>*/sql/**</include> <include>*/Versioned/config/**</include> 
+											<include>*/Versioned/data/**</include> <include>*/Versioned/install/**</include> 
+											<include>*/Versioned/j2ee-apps/**</include> <include>*/Versioned/lib/**</include> 
+											<include>*/Versioned/META-INF/**</include> <include>*/Versioned/resources/**</include> 
+											<include>*/Versioned/sql/**</include> -->
+										<include>*/**</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>SwaggerListing</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<target>
+								<taskdef resource="net/sf/antcontrib/antlib.xml" />
+								<fileset id="my-fileset" dir="resources" />
+								<pathconvert targetos="unix" pathsep="," property="my-file-list"
+									refid="my-fileset">
+									<map from="${basedir}resources\" to="" />
+								</pathconvert>
+								<echo>Files Listed: ${my-file-list}</echo>
+								<property name="swagger-codegen-cli.jar" refid="maven.compile.classpath" />
+								<echo message="Where is the Log4J JAR?: ${swagger-codegen-cli.jar}" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>PrintBuildInfo</id>
+						<inherited>false</inherited>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo>Displaying value property</echo>
+								<echo>[hostname]: ${hostname}</echo>
+								<echo>[dynamo.root]: ${dynamo.root}</echo>
+								<echo>[svninfo.run]: ${svninfo.run}</echo>
+								<echo>[TESTRECIPIENTEMAIL]: ${TESTRECIPIENTEMAIL}</echo>
+								<echo>[DEPLOYLOCATION]: ${jboss6.deploy.dir}</echo>
+								<touch file="${jboss6.deploy.dir}/${ear.filename}.dodeploy" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includeProjectDependencies>true</includeProjectDependencies>
+					<includePluginDependencies>true</includePluginDependencies>
+					<executable>java</executable>
+					<mainClass>io.swagger.codegen.SwaggerCodegen</mainClass>
+					<arguments>
+						<argument>generate</argument>
+						<argument>-l</argument>
+						<argument>java</argument>
+						<argument>-i</argument>
+						<argument>resources/rest/v2/pet.json</argument>
+						<argument>-c</argument>
+						<argument>resources/rest/v2/pet.json.config.json</argument>
+						<argument>-o</argument>
+						<argument>src</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0-alpha-2</version>
+					<inherited>false</inherited>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											properties-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0-alpha-2,)
+										</versionRange>
+										<goals>
+											<goal>
+												read-project-properties
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-antrun-plugin
+										</artifactId>
+										<versionRange>
+											[1.4,)
+										</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

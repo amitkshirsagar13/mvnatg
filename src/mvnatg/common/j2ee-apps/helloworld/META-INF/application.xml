@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application>
+	<display-name>helloworld</display-name>
+	<description>helloworld</description>
+	<module>
+		<web>
+			<web-uri>helloworld.war</web-uri>
+			<context-root>/helloworld</context-root>
+		</web>
+	</module>
+</application>
